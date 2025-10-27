@@ -1,0 +1,32 @@
+seed: 42
+
+data:
+  root: ./data/fallen_trees_coco_tiles
+  train_json: ${data.root}/annotations/train.json
+  val_json: ${data.root}/annotations/val.json
+  train_images: ${data.root}/images/train
+  val_images: ${data.root}/images/val
+  num_classes: 2
+
+train:
+  epochs: 20
+  batch_size: 4
+  lr: 5e-4
+  weight_decay: 5e-2
+  step_size: 5
+  gamma: 0.1
+  num_workers: 4
+  mixed_precision: true
+
+model:
+  swin_name: swinv2_tiny_window16_256
+  image_size: 256
+  min_size_train: 256
+  max_size_train: 256
+  min_size_test: 256
+  max_size_test: 256
+
+paths:
+  out_dir: ./runs/swinv2_maskrcnn_tiles
+  ckpt_dir: ${paths.out_dir}/checkpoints
+  eval_dir: ${paths.out_dir}/eval
